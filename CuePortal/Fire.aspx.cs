@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace CicPortal
+{
+    public partial class Fire : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+
+            if (!IsPostBack)
+            {
+                var nav = Config.ReturnNav();
+                var categories = nav.ResourceCategorization.Where(r => r.Department == "Fire");
+                fireClass.DataSource = categories;
+                fireClass.DataValueField = "Id";
+                fireClass.DataTextField = "Category";
+                fireClass.DataBind();
+                var campuses = nav.campuses;
+                campus.DataSource = campuses;
+                campus.DataTextField = "Description";
+                campus.DataValueField = "No";
+                campus.DataBind();
+            }
+
+
+        }
+
+  
+
+       
+    }
+}
